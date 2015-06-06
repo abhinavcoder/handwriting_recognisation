@@ -1,25 +1,29 @@
-import os
-import ctypes
+import cv2.cv as cv
+import tesseract
 
-lang = "eng"
-filename = "/usr/src/tesseract-ocr/phototest.tif"
-libname = "/usr/local/lib64/libtesseract.so.3"
-TESSDATA_PREFIX = os.environ.get('TESSDATA_PREFIX')
-if not TESSDATA_PREFIX:
-    TESSDATA_PREFIX = "../"
+'''
+pagesegmode values are:
+0 = Orientation and script detection (OSD) only.
+1 = Automatic page segmentation with OSD.
+2 = Automatic page segmentation, but no OSD, or OCR
+3 = Fully automatic page segmentation, but no OSD. (Default)
+4 = Assume a single column of text of variable sizes.
+5 = Assume a single uniform block of vertically aligned text.
+6 = Assume a single uniform block of text.
+7 = Treat the image as a single text line.
+8 = Treat the image as a single word.
+9 = Treat the image as a single word in a circle.
+10 = Treat the image as a single character.
+-l lang and/or -psm pagesegmode must occur before anyconfigfile.
 
-tesseract = ctypes.cdll.LoadLibrary(libname)
-tesseract.TessVersion.restype = ctypes.c_char_p
-tesseract_version = tesseract.TessVersion()
-api = tesseract.TessBaseAPICreate()
-rc = tesseract.TessBaseAPIInit3(api, TESSDATA_PREFIX, lang)
-if (rc):
-    tesseract.TessBaseAPIDelete(api)
-    print("Could not initialize tesseract.\n")
-    exit(3)
-
-text_out = tesseract.TessBaseAPIProcessPages(api, filename, None, 0)
-result_text = ctypes.string_at(text_out)
-
-print 'Tesseract-ocr version', tesseract_version
-print result_text
+'''
+api = tesseract.TessBaseAPI()
+api.Init(".","eng",tesseract.OEM_DEFAULT)
+api.SetPageSegMode(10)    
+image=cv.LoadImage("image.jpg", cv.CV_LOAD_IMAGE_GRAYSCALE)
+tesseract.SetCvImage(image,api)
+text=api.GetUTF8Text()
+conf=api.MeanTextConf()
+file = open("tess_output.txt", "w")
+file.write('%s' % text)
+file.close();

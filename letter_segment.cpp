@@ -5,18 +5,23 @@
 #include <vector>
 #include <cmath>
 
-#define char_no 2
+#define histo
+#define char_no 1
 using namespace std ;
 int main()
 {
 
- int numx , numy , counter=0 ;
+ int numx , numy ;
  vector< pair<int , int > > coordinate ;
+ifstream file("letter_sample.txt") ;
+int counter = 0 ;
 int maxx = 0 , minx = 323000 ; 
-ifstream file("letter_factor.txt") ;
+int column[400] = {0} ;
+
 while(!file.eof()) {
        file>>numx ;
        file>>numy ;
+       column[numx]++ ;
        if(numx > maxx)
        	 maxx = numx ;
        	if(numx < minx)
@@ -25,6 +30,22 @@ while(!file.eof()) {
        counter++ ;
     }
     file.close();
+
+
+#ifdef histo
+ofstream file1("letter_segment.txt");
+for(int i = 0 ; i < counter ; i++)
+{
+   if(column[coordinate[i].first]==1)
+    file1<<0<<" "<<0<<endl;
+   else
+    file1<<coordinate[i].first<<" "<<coordinate[i].second<<endl ;
+
+}
+file1.close();
+#endif
+
+#ifdef width_thr
 int width_thresh = 1.2*(maxx - minx)/char_no ;
 int deviation = width_thresh/5 ;
 ofstream file1("letter_segment.txt");
@@ -38,5 +59,7 @@ for(int i = 0 ; i < counter ; i++)
 	 file1<<coordinate[i].first<<" "<<coordinate[i].second<<endl ;	
 } 
 file1.close();   
+#endif
+
 return 0 ;
 }

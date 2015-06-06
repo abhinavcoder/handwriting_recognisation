@@ -1,5 +1,6 @@
 
 from Tkinter import *
+import Image, ImageDraw
 
 """paint.py: not exactly a paint program.. just a smooth line drawing demo."""
 
@@ -16,6 +17,13 @@ def main():
     drawing_area.bind("<ButtonPress-1>", b1down)
     drawing_area.bind("<ButtonRelease-1>", b1up)
     drawing_area.bind("<Button-3>",reset)
+    width = 400
+    height = 300
+    center = height//2
+    white = (255, 255, 255)
+    green = (0,128,0)
+    cv = Canvas(root, width=width, height=height, bg='white')
+    cv.pack()
     root.mainloop()
 
 
