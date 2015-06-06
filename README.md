@@ -10,3 +10,5 @@
 5. Click "tesseract-ocr" for recognisation 
 6. Open file "tess_output.txt" to get the recognised character 
 7. Click "Clear" to remove everything and redraw
+
+# change the -psm number in the .py file according to necessity (line 72)
