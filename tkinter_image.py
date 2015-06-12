@@ -6,6 +6,11 @@ import Tkinter as tk
 import Image,ImageDraw
 
 '''
+1. Run C++ code from python 
+2. Save the image drawn using create_line
+3. More better segmetnation 
+'''
+'''
 pagesegmode values are:
 0 = Orientation and script detection (OSD) only.
 1 = Automatic page segmentation with OSD.
@@ -20,7 +25,7 @@ pagesegmode values are:
 10 = Treat the image as a single character.
 -l lang and/or -psm pagesegmode must occur before anyconfigfile.
 '''
-mode = 10 
+mode = 6
 xold, yold = None, None
 file1 = open("letter_sampleNew.txt", "w")
 file1.close()
@@ -50,20 +55,14 @@ class ImageGenerator:
         self.button1.place(x=(self.sizex/10)+400,y=self.sizey+20)
         self.button1=tk.Button(self.parent,text="Factor",width=10,bg='white',command=self.factor)
         self.button1.place(x=(self.sizex/10),y=self.sizey+70)
-        self.button1=tk.Button(self.parent,text="Draw",width=10,bg='white',command=self.draw)
+        self.button1=tk.Button(self.parent,text="Draw $ Save",width=10,bg='white',command=self.draw_save)
         self.button1.place(x=(self.sizex/10)+200,y=self.sizey+70)
-        self.button1=tk.Button(self.parent,text="Save refactor",width=10,bg='white',command=self.saveFactor)
-        self.button1.place(x=(self.sizex/10)+400,y=self.sizey+70)
 
         self.image=Image.new("RGB",(650,500),(255,255,255))
         self.draw=ImageDraw.Draw(self.image)
 
     def save(self):
         filename = "Image.jpg"
-        self.image.save(filename)
-
-    def saveFactor(self):
-        filename = "ImageFactor.jpg"
         self.image.save(filename)
 
 
@@ -79,7 +78,7 @@ class ImageGenerator:
         api.Init(".","eng",tesseract.OEM_DEFAULT)
         #setup the page segment number ... choose from the list at top ..
         api.SetPageSegMode(mode)    #set the -psm number ..
-        image=cv.LoadImage("Image.jpg", cv.CV_LOAD_IMAGE_GRAYSCALE)
+        image=cv.LoadImage("ImageFinal.jpg", cv.CV_LOAD_IMAGE_GRAYSCALE)
         tesseract.SetCvImage(image,api)
         text=api.GetUTF8Text()
         conf=api.MeanTextConf()
@@ -94,9 +93,13 @@ class ImageGenerator:
           for word in line.split():
              pointsFactor.append(word)
 
-    def draw(self):
+    def draw_save(self):
         self.drawing_area.delete("all")
+        self.image=Image.new("RGB",(650,500),(255,255,255))
+        self.draw=ImageDraw.Draw(self.image)        
         self.drawing_area.create_line(pointsFactor,smooth = 'true' , width=2 ,tags="theline")
+        filename = "ImageFactor.jpg"
+        self.image.save(filename) #the file being saved is the blank file 
     
     def b1down(self,event):
         self.b1 = "down"

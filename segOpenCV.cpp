@@ -4,6 +4,9 @@
 #include "opencv2/imgproc/imgproc.hpp"
 #include <unistd.h>
 #include <opencv2/highgui/highgui.hpp>
+#include <fstream>
+#include <vector>
+#include <utility>
 
 using namespace std;
 using namespace cv;
@@ -120,10 +123,23 @@ Mat get_histogram(Mat image) {
 
 
 int main()
-{
-	Mat image;
+{   
+    vector< pair<int, int> > points ;
+    int x1 , y1 ;
+	int size = 0 ;
+	Mat image , img;
 	string fname;
 	//cin >> fname;
+	ifstream file;
+	file.open("letter_factor.txt") ;
+	
+	while(!file.eof())
+	{
+		file >> x1 ;
+		file >> y1 ;
+		points.push_back(make_pair(x1,y1)) ;
+		size++ ;
+	}
 	image = imread("Image.jpg",CV_LOAD_IMAGE_COLOR);
 	char win[] = "Histogram"; //String with the name of the window
 	namedWindow(win,CV_WINDOW_AUTOSIZE);
@@ -135,15 +151,24 @@ int main()
 	*/
 	imshow(win,image);
 	waitKey(1000);	
-
-	Mat binary = get_binary(image) ;
-	waitKey(1000) ;
+    Mat binary = get_binary(image) ;
+	waitKey(0) ;
 	Mat noise  = noise_erosion(binary);
-	waitKey(1000) ;
+	waitKey(0) ;
+	
+	img = imread("ImageFactor.jpg",CV_LOAD_IMAGE_COLOR) ;
+
+	for(int i = 1 ; i < size ; i++)
+	  cv::line(img,cv::Point(points[i-1].first,points[i-1].second),cv::Point(points[i].first,points[i].second), cv::Scalar(0), 1, 8, 0);
+	
+	imwrite("ImageFactor.jpg",img);
+	imshow("cvSegment",img);
+	waitKey(1000);
+	
 	Mat secondary = get_histogram(noise);
-	imwrite( "ImageFinal.jpg",secondary);
+	imwrite("ImageFinal.jpg",secondary);
     imshow(win,secondary);
-	waitKey(0);
+	waitKey(1000);
 	
 	return 0;
 
