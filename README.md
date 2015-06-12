@@ -1,6 +1,5 @@
 # handwriting_recognisation using Tkinter GUI in Python and processing code in C++ .
 # Cursive and Non-cursive done
-
 # Inorder to recognise the single character change the "mode" variable in "tkinter_image.py" to 10 ::
 1. Install tesseract , PIL and OpenCV in Ubuntu
 2. To run GUI :
