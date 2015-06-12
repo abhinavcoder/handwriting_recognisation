@@ -20,11 +20,12 @@ pagesegmode values are:
 10 = Treat the image as a single character.
 -l lang and/or -psm pagesegmode must occur before anyconfigfile.
 '''
-
+mode = 10 
 xold, yold = None, None
 file1 = open("letter_sampleNew.txt", "w")
 file1.close()
 points = []
+pointsFactor = [] 
 
 class ImageGenerator:
     def __init__(self,parent,posx,posy,*kwargs):
@@ -47,16 +48,24 @@ class ImageGenerator:
         self.button1.place(x=(self.sizex/10)+200,y=self.sizey+20)
         self.button1=tk.Button(self.parent,text="Tesseract-OCR",width=10,bg='white',command=self.ocr)
         self.button1.place(x=(self.sizex/10)+400,y=self.sizey+20)
-        self.button1=tk.Button(self.parent,text="Segment",width=40,bg='white',command=self.segment)
-        self.button1.place(x=(self.sizex/5)-20,y=self.sizey+70)
-
+        self.button1=tk.Button(self.parent,text="Factor",width=10,bg='white',command=self.factor)
+        self.button1.place(x=(self.sizex/10),y=self.sizey+70)
+        self.button1=tk.Button(self.parent,text="Draw",width=10,bg='white',command=self.draw)
+        self.button1.place(x=(self.sizex/10)+200,y=self.sizey+70)
+        self.button1=tk.Button(self.parent,text="Save refactor",width=10,bg='white',command=self.saveFactor)
+        self.button1.place(x=(self.sizex/10)+400,y=self.sizey+70)
 
         self.image=Image.new("RGB",(650,500),(255,255,255))
         self.draw=ImageDraw.Draw(self.image)
 
     def save(self):
-        filename = "temp.jpg"
+        filename = "Image.jpg"
         self.image.save(filename)
+
+    def saveFactor(self):
+        filename = "ImageFactor.jpg"
+        self.image.save(filename)
+
 
     def clear(self):
         file1= open("letter_sampleNew.txt", "w")
@@ -68,20 +77,26 @@ class ImageGenerator:
     def ocr(self):
         api = tesseract.TessBaseAPI()
         api.Init(".","eng",tesseract.OEM_DEFAULT)
-        api.SetPageSegMode(6)    
-        image=cv.LoadImage("temp.jpg", cv.CV_LOAD_IMAGE_GRAYSCALE)
+        #setup the page segment number ... choose from the list at top ..
+        api.SetPageSegMode(mode)    #set the -psm number ..
+        image=cv.LoadImage("Image.jpg", cv.CV_LOAD_IMAGE_GRAYSCALE)
         tesseract.SetCvImage(image,api)
         text=api.GetUTF8Text()
         conf=api.MeanTextConf()
         file = open("tess_output.txt", "w")
         file.write('%s' % text)
         file.close()
+        print(text)
        
-       
-    def segment(self):
-         #does character segmentation ...
-         file = open("segmentation","w")
-         file.close()
+    def factor(self):
+        file = open("letter_factor.txt", "r")
+        for line in file:
+          for word in line.split():
+             pointsFactor.append(word)
+
+    def draw(self):
+        self.drawing_area.delete("all")
+        self.drawing_area.create_line(pointsFactor,smooth = 'true' , width=2 ,tags="theline")
     
     def b1down(self,event):
         self.b1 = "down"

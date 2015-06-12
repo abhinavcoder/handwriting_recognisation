@@ -18,7 +18,7 @@ using namespace std ;
  //******** updating the coordinate vector **********
 int counter = 0 , count2 = -1;  //contains the number of pair of coordinates
 
- ifstream file("letter_sample.txt");
+ ifstream file("letter_sampleNew.txt");
     while(!file.eof()) {
        file>>numx ;
        file>>numy ;
