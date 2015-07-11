@@ -13,7 +13,7 @@ using namespace cv;
 
 #define threshold 200
 #define edge_thresh 50
-#define segThresh 10  // depends upon the brush stoke size : test and assure the result 
+#define segThresh 10 // depends upon the brush stoke size : test and assure the result 
 #define safeThresh 50
 
 int thresh , thresh1 = 88 ; 
@@ -97,8 +97,6 @@ Mat get_histogram(Mat image) {
        	isSafe[i] = true ;
        else
        	isSafe[i] = false ;
-
-       cout<<i<<" "<<"Freq :: "<<freqIntensity[i]<<endl ; 
     }
 
     for(int i = 0 ; i < image.cols ; i++) 
@@ -108,15 +106,21 @@ Mat get_histogram(Mat image) {
              if(freqIntensity[i-1]>=segThresh && freqIntensity[i+1] >=segThresh && freqIntensity[i] < segThresh)
              	freqIntensity[i] = segThresh ;
     	}
+    	if((i > 2)&&(freqIntensity[i-2] > segThresh))
+    		  freqIntensity[i] = segThresh ;
+
     	if(freqIntensity[i] < segThresh )
     	{
     		if(isSafe[i])
     			freqIntensity[i] = segThresh;
     		else
-                for(int j = 0 ; j < image.rows ; j++)
+                {
+                	freqIntensity[i]=0 ;
+                   for(int j = 0 ; j < image.rows ; j++)
     		        image.at<uchar>(j,i) = 255 ;
-    		
+    		    }
     	}
+    	cout<<i<<" "<<"Freq :: "<<freqIntensity[i]<<endl ;
     }
 	return image ;
 }
@@ -146,11 +150,11 @@ int main()
 	/*
 	   if(!image.data){
 		cout << "jvd";
-		waitKey(0);
+		waitKey(0);z
 		return -1;
 	*/
-	imshow(win,image);
-	waitKey(1000);	
+	imshow("Image_original",image);
+	waitKey(0);	
     Mat binary = get_binary(image) ;
 	waitKey(0) ;
 	Mat noise  = noise_erosion(binary);
@@ -162,13 +166,13 @@ int main()
 	  cv::line(img,cv::Point(points[i-1].first,points[i-1].second),cv::Point(points[i].first,points[i].second), cv::Scalar(0), 1, 8, 0);
 	
 	imwrite("ImageFactor.jpg",img);
-	imshow("cvSegment",img);
-	waitKey(1000);
+	imshow("Image_factor",img);
+	waitKey(0);
 	
 	Mat secondary = get_histogram(noise);
 	imwrite("ImageFinal.jpg",secondary);
-    imshow(win,secondary);
-	waitKey(1000);
+    imshow("Image_Segment",secondary);
+	waitKey(0);
 	
 	return 0;
 

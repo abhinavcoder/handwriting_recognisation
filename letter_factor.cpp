@@ -5,7 +5,7 @@
 #include <vector>
 #include <cmath>
 #define coord_refactor
-#define dist_thresh 2   // used for cleaning the coordinate 
+#define dist_thresh 10  // used for cleaning the coordinate 
 using namespace std ;
 
  int main()
@@ -18,8 +18,9 @@ using namespace std ;
  //******** updating the coordinate vector **********
 int counter = 0 , count2 = -1;  //contains the number of pair of coordinates
 
- ifstream file("letter_sampleNew.txt");
-    while(!file.eof()) {
+    ifstream file("letter_sampleNew.txt");
+//  ifstream file("intugine.txt");
+  while(!file.eof()) {
        file>>numx ;
        file>>numy ;
        coordinate.push_back(make_pair(numx,numy));
@@ -66,15 +67,21 @@ int counter = 0 , count2 = -1;  //contains the number of pair of coordinates
   // removing unessecary close coordinates 
   for(int i = 1 ; i < counter ; i++)
   {
-    /*dist = sqrt(pow((coordinate[i].first - pseudoCordinate[pseudocounter-1].first),2)+pow(( coordinate[i].second - pseudoCordinate[pseudocounter-1].second ),2 )) ;
+    dist = sqrt(pow((coordinate[i].first - pseudoCordinate[pseudocounter-1].first),2)+pow(( coordinate[i].second - pseudoCordinate[pseudocounter-1].second ),2 )) ;
     if(dist > dist_thresh)
-      */
-    if((abs(coordinate[i].first - pseudoCordinate[pseudocounter-1].first)>dist_thresh)&&(abs(coordinate[i].second - pseudoCordinate[pseudocounter-1].second)>dist_thresh))
     {
        pseudoCordinate.push_back(make_pair(coordinate[i].first,coordinate[i].second)) ; 
        pseudocounter++ ;
        file1<<coordinate[i].first<<" "<<coordinate[i].second<<endl;
     }
+    /*
+    if((abs(coordinate[i].first - pseudoCordinate[pseudocounter-1].first)>dist_thresh)||(abs(coordinate[i].second - pseudoCordinate[pseudocounter-1].second)>dist_thresh))
+    {
+       pseudoCordinate.push_back(make_pair(coordinate[i].first,coordinate[i].second)) ; 
+       pseudocounter++ ;
+       file1<<coordinate[i].first<<" "<<coordinate[i].second<<endl;
+    }
+    */
   }
   file1.close();  
 

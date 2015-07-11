@@ -1,0 +1,15 @@
+1. To compile openCV C++ :
+> g++ -o segOpenCV  segOpenCV.cpp `pkg-config opencv --cflags --libs`
+> ./segOpenCV
+
+2. Tesseract execution : 
+> tesseract Image.jpg out -l eng -psm 10 
+
+3. To compile the C++ code to be executed by Python wrapper :
+>  g++ -c -fPIC letter_factor.cpp -o factor.o
+>  g++ -shared -Wl,-soname,factor.so -o factor.so factor.o
+
+4. To compile OpenCV C++ code by Python wrappper :
+> g++ -c -fPIC segOpenCV.cpp -o segment.o `pkg-config opencv --cflags --libs`
+> g++ -shared -Wl,-soname,segment.so `pkg-config opencv --cflags --libs` -o segment.so segment.o `pkg-config opencv --cflags --libs`
+
