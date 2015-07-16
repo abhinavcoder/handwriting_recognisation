@@ -21,12 +21,13 @@
 The final segmented image is saved as "ImageFinal.jpg"
 
 6. To show the recognisation using Tesseract 
-   i.  Click "Cursive" for recognisation of cursive word (after step 4)
+   i.  Click "Cursive" for recognisation of cursive word(after step4)
    ii. Click "Character" for recognisation of single charact(ignore4)
    iii. For non-cursive word :
        a. In new terminal goto required directory :
           > tesseract Image.jpg out -l eng -psm 6
-       b. Open "out.txt"  
+       b. Open "out.txt" , ignore step 7 
+  
 7. Open Output terminal to get the recognised word 
               or
    Open file "tess_output.txt" to get the recognised word 

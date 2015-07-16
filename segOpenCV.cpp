@@ -153,7 +153,7 @@ int main()
 		waitKey(0);z
 		return -1;
 	*/
-	imshow("Image_original",image);
+//	imshow("Image_original",image);
 	waitKey(0);	
     Mat binary = get_binary(image) ;
 	waitKey(0) ;
@@ -166,7 +166,7 @@ int main()
 	  cv::line(img,cv::Point(points[i-1].first,points[i-1].second),cv::Point(points[i].first,points[i].second), cv::Scalar(0), 1, 8, 0);
 	
 	imwrite("ImageFactor.jpg",img);
-	imshow("Image_factor",img);
+//	imshow("Image_factor",img);
 	waitKey(0);
 	
 	Mat secondary = get_histogram(noise);

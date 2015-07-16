@@ -1,6 +1,7 @@
 # handwriting_recognisation using Tkinter GUI in Python 
 # For both Cursive and Non-cursive words / characters 
 # Processing and OpenCV code in C++ which is executed through Python wrapper 
+# dictionary of characters are used for revising recognisation 
 
 1. Install tesseract , PIL and OpenCV in Ubuntu
 2. To run GUI :

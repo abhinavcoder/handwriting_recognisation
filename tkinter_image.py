@@ -47,7 +47,7 @@ class ImageGenerator:
         self.button.place(x=self.sizex/10,y=self.sizey+20)
         self.button1=tk.Button(self.parent,text="Clear",width=10,bg='purple',command=self.clear)
         self.button1.place(x=(self.sizex/10)+180,y=self.sizey+20)
-        self.button1=tk.Button(self.parent,text="Cursive",width=10,bg='purple',command=self.ocr_cursive)
+        self.button1=tk.Button(self.parent,text="Cursive",width=10,bg='yellow',command=self.ocr_cursive)
         self.button1.place(x=(self.sizex/10)+350,y=self.sizey+20)
         self.button1=tk.Button(self.parent,text="Character",width=10,bg='orange',command=self.ocr_character)
         self.button1.place(x=(self.sizex/10)+450,y=self.sizey+20)
@@ -81,7 +81,7 @@ class ImageGenerator:
     def segment(self):
         
         lib1 = cdll.LoadLibrary ('./segment.so')
-        lib1.main();
+        lib1.main()
     
     def ocr_cursive(self):
         api = tesseract.TessBaseAPI()
@@ -96,7 +96,11 @@ class ImageGenerator:
         file = open("tess_output.txt", "w")
         file.write('%s' % text)
         file.close()
-        print(text)
+        lib3 = cdll.LoadLibrary ('./dictionary.so')
+        lib3.main()
+        print("Original : %s" % text);
+        
+
 
     def ocr_character(self):
         api = tesseract.TessBaseAPI()
