@@ -32,7 +32,9 @@ The final segmented image is saved as "ImageFinal.jpg"
    Open file "tess_output.txt" to get the recognised word 
 
 8. Click "Clear" to remove everything and redraw
-Simulator Picture
-![alt tag](https://github.com/abhinavcoder/handwriting_recognisation/tree/master/README_PICS/Tkinter.png)
-Segmented word from OpenCV
-![alt tag](https://github.com/abhinavcoder/handwriting_recognisation/tree/master/README_PICS/segmented.png)
+
+Simulator Picture :
+![alt text](https://github.com/abhinavcoder/handwriting_recognisation/tree/master/README_PICS/Tkinter.png)
+
+Segmented word from OpenCV :
+![alt text](https://github.com/abhinavcoder/handwriting_recognisation/tree/master/README_PICS/segmented.png)
