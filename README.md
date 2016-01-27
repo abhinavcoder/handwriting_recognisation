@@ -34,7 +34,7 @@ The final segmented image is saved as "ImageFinal.jpg"
 8. Click "Clear" to remove everything and redraw
 
 Simulator Picture :
-![Simulator](https://raw.githubusercontent.com/abhinavcoder/handwriting_recognisation/tree/master/README_PICS/Tkinter.png)
+![Simulator](https://github.com/abhinavcoder/handwriting_recognisation/tree/master/README_PICS/Tkinter.png)
 
 Segmented word from OpenCV :
-![Image](https://raw.githubusercontent.com/abhinavcoder/handwriting_recognisation/tree/master/README_PICS/segmented.png)
+![Image](https://github.com/abhinavcoder/handwriting_recognisation/tree/master/README_PICS/segmented.png)
