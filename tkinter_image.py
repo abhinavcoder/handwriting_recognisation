@@ -1,6 +1,6 @@
 
 import cv2.cv as cv
-import tesseract
+import pytesseract
 from Tkinter import *
 import Tkinter as tk
 import Image,ImageDraw
