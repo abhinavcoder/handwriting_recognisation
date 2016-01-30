@@ -9,8 +9,8 @@
 - Processing and OpenCV code in C++ which is executed through Python wrapper
 
 #### User Manual : 
-- 1. Install tesseract , PIL and OpenCV in Ubuntu (follow SETUP_LINKS.docx)
-- 2. To run GUI :
+- Step 1) Install tesseract , PIL and OpenCV in Ubuntu (follow SETUP_LINKS.docx)
+- Step 2) To run GUI :
    - > python tkinter_image.py
    - i .  Draw the image 
    - ii.  Click "Save" to save the image and coordinates ::
@@ -18,17 +18,17 @@
          - b. Coordinates saved in "letter_sampleNew.txt"
    - iii.  Click "Clear" to clear the image (Optional)
    
-- 3. To refactor the coordinates and display it :
+- Step 3) To refactor the coordinates and display it :
    - i. Click "Factor $ Save"
          - a. Factored coordinates saved in "letter_factor.txt
          
-- 4. // To be run only for cursive writing 
+- Step 4) // To be run only for cursive writing 
    - To run the OpenCV- segmentation code 
       - i. Click "Segment_OpenCV" 
 
 The final segmented image is saved as "ImageFinal.jpg"
 
-- 5. To show the recognisation using Tesseract 
+- Step 5) To show the recognisation using Tesseract 
    - i.  Click "Cursive" for recognisation of cursive word(after step4)
    - ii. Click "Character" for recognisation of single charact(ignore4)
    - iii. For non-cursive word :
@@ -39,11 +39,11 @@ The final segmented image is saved as "ImageFinal.jpg"
          
          - b. Open "out.txt" , ignore step 6 
   
-- 6. Open Output terminal to get the recognised word 
+- Step 6) Open Output terminal to get the recognised word 
               or
      Open file "tess_output.txt" to get the recognised word 
 
-- 7. Click "Clear" to remove everything and redraw
+- Step 7) Click "Clear" to remove everything and redraw
 
 #### Simulator :
 Simulator : 
