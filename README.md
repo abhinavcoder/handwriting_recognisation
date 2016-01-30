@@ -1,7 +1,15 @@
-# Handwriting_recognisation using Tkinter GUI in Python 
-# Processing and OpenCV code in C++ which is executed through Python wrapper 
+# Handwriting_recognisation
 
-1. Install tesseract , PIL and OpenCV in Ubuntu
+#### Description :
+
+- Handwriting recognition for Cursive and Non-cursive using Tesseract-OCR .
+- Image Processing techniques(method of histograms) for cursive segmentation .
+- Spline curves for smooth data points interpolation.
+- Simulator made from Tkinter GUI in Python .
+- Processing and OpenCV code in C++ which is executed through Python wrapper
+
+#### User Manual : 
+1. Install tesseract , PIL and OpenCV in Ubuntu (follow SETUP_LINKS.docx)
 2. To run GUI :
    > python tkinter_image.py
     i .  Draw the image 
@@ -13,9 +21,9 @@
    i. Click "Factor $ Save"
           a. Factored coordinates saved in "letter_factor.txt"
 
-# To be run only for cursive writing (point 4)
-4. To run the OpenCV- segmentation code 
-   i. Click "Segment_OpenCV"  
+4. // To be run only for cursive writing 
+   To run the OpenCV- segmentation code 
+   i. Click "Segment_OpenCV" 
 
 The final segmented image is saved as "ImageFinal.jpg"
 
@@ -33,7 +41,7 @@ The final segmented image is saved as "ImageFinal.jpg"
 
 8. Click "Clear" to remove everything and redraw
 
-Simulator Picture :
+#### Simulator :
 
 ![Simulator](https://raw.githubusercontent.com/abhinavcoder/handwriting_recognisation/master/README_PICS/Tkinter.png)
 

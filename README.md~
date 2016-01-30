@@ -1,5 +1,4 @@
-# handwriting_recognisation using Tkinter GUI in Python 
-# For both Cursive and Non-cursive words / characters 
+# Handwriting_recognisation using Tkinter GUI in Python 
 # Processing and OpenCV code in C++ which is executed through Python wrapper 
 
 1. Install tesseract , PIL and OpenCV in Ubuntu
@@ -34,3 +33,10 @@ The final segmented image is saved as "ImageFinal.jpg"
 
 8. Click "Clear" to remove everything and redraw
 
+Simulator Picture :
+
+![Simulator](https://raw.githubusercontent.com/abhinavcoder/handwriting_recognisation/master/README_PICS/Tkinter.png)
+
+Segmented word from OpenCV :
+
+![Image](https://raw.githubusercontent.com/abhinavcoder/handwriting_recognisation/master/README_PICS/segmented.png)
